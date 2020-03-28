@@ -36,6 +36,9 @@ public class Order {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "quantity")
+    private Integer quantity;
+
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
