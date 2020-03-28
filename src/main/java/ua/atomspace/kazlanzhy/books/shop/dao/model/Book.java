@@ -43,7 +43,7 @@ public class Book {
             name = "books_to_authors",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<Author> author;
+    private List<Author> authors;
 
     @ManyToMany
     @JoinTable(
