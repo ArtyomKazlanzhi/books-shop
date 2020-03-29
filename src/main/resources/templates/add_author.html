@@ -10,14 +10,14 @@
 <body class="bg-light">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a href="/genres" class="navbar-brand">Books by genre</a>
-    <a href="/authors" class="navbar-brand">Books by author</a>
+    <a href="/genres/select" class="navbar-brand">Books by genre</a>
+    <a href="/authors/select" class="navbar-brand">Books by author</a>
 </nav>
 
 <div class="container">
 
     <div class="py-5 text-center">
-        <h2><a href="/authors" class="badge badge-info mb-3">See all authors here</a></h2>
+        <h2><a href="/authors" class="badge badge-info mb-3">Back to all authors</a></h2>
         <div class="col-md-12 mb-3 mt-5">
             <h4 class="px-md-5">Fields to input</h4>
             <form class="mt-3" enctype="multipart/form-data" method="post" th:action="@{/authors/add}"
@@ -43,8 +43,6 @@
             </form>
         </div>
     </div>
-</div>
-
 </div>
 </body>
 </html>

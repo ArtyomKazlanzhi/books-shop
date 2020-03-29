@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Author;
@@ -26,12 +27,12 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @GetMapping
-    public String getAuthors(Model model) {
+    @GetMapping("/select")
+    public String getAuthorsForSelect(Model model) {
         List<Author> list = authorService.list();
         log.info("GET authors list: {}", list);
         model.addAttribute("authors", list);
-        return "authors";
+        return "select_author";
     }
 
     @GetMapping("/add")
@@ -45,8 +46,30 @@ public class AuthorController {
         if (!bindingResult.hasErrors()) {
             log.info("POST author: {}", author);
             authorService.create(author);
-            return "redirect:/authors";
+            return "redirect:/authors/select";
         }
         return "add_author";
+    }
+
+    @GetMapping
+    public String getAllAuthors(Model model) {
+        List<Author> authors = authorService.list();
+        log.info("GET all authors: {}", authors);
+        model.addAttribute("authors", authors);
+        return "authors";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editAuthor(@PathVariable Integer id, Model model) {
+        Author author = authorService.get(id);
+        model.addAttribute("author", author);
+        return "edit_author";
+    }
+
+    @PostMapping("/edit")
+    public String processAuthorEditing(Author author) {
+        log.info("{}", author);
+        authorService.update(author, author.getId());
+        return "redirect:/authors";
     }
 }

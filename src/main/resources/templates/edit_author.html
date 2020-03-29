@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title th:text="'Edit ' + ${author.lastName}"></title>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="/genres/select" class="navbar-brand">Books by genre</a>
+    <a href="/authors/select" class="navbar-brand">Books by author</a>
+</nav>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2><a href="/authors" class="btn btn-primary mb-3">Back to all authors</a></h2>
+        <div class="col-md-12 mb-3 mt-5">
+            <h4 class="px-md-5">Edit author information</h4>
+            <form class="mt-3" enctype="multipart/form-data" method="post" th:action="@{/authors/edit}"
+                  th:object="${author}">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="d-flex justify-content-center">
+                    <div class="col-md-3">
+                        <label for="lastName">Last name</label>
+                        <input th:field="*{lastName}" th:value="${author.lastName}" type="text" class="form-control"
+                               id="lastName" required>
+                        <small class="text-danger" th:if="${#fields.hasErrors('lastName')}"
+                               th:errors="*{lastName}"></small>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="firstName">First Name</label>
+                        <input th:field="*{firstName}" th:value="${author.firstName}" type="text" class="form-control"
+                               id="firstName">
+                        <small class="text-danger" th:if="${#fields.hasErrors('firstName')}"
+                               th:errors="*{firstName}"></small>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="patronymic">Patronymic</label>
+                        <input th:field="*{patronymic}" th:value="${author.patronymic}" type="text" class="form-control"
+                               id="patronymic" required>
+                        <small class="text-danger" th:if="${#fields.hasErrors('patronymic')}"
+                               th:errors="*{patronymic}"></small>
+                    </div>
+                </div>
+                <button class="btn btn-success btn-block mt-5" type="submit" value="Submit">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,51 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script>
+        function rowClicked(value) {
+            location.href = "/genres/edit/" + value;
+        }
+    </script>
+    <style>
+        tr:hover {
+            background: #ccc;
+            cursor: pointer;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>All authors</title>
+    <title>Select genre</title>
 </head>
 <body class="bg-light">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a href="/genres/select" class="navbar-brand">Books by genre</a>
+    <a href="/genres/select" class="navbar-brand nav-item active" style="color: #179754">Books by genre</a>
     <a href="/authors/select" class="navbar-brand">Books by author</a>
 </nav>
 
 <div class="container">
 
     <div class="py-5 text-center">
-        <div th:switch="${#lists.isEmpty(authors)}">
+        <div th:switch="${#lists.isEmpty(genres)}">
             <div th:case="${false}" class="table-responsive">
-                <h2>Present authors</h2>
+                <h2>Present genres</h2>
+                <h3 class="p-4">Select genre to show the list of its books</h3>
                 <table class="table">
                     <thead class="thead-dark">
                     <tr>
-                        <th>Last name</th>
-                        <th>First name</th>
-                        <th>Patronymic</th>
-                        <th></th>
+                        <th>№</th>
+                        <th>Name</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="align-middle" th:each="author : ${authors}">
-                        <td><span th:text="${author.lastName}"></span></td>
-                        <td><span th:text="${author.firstName}"></span></td>
-                        <td><span th:text="${author.patronymic}"></span></td>
-                        <td><span><a class="btn btn-primary" th:href="@{'/authors/edit/' + ${author.id}}" role="button">Edit</a></span></td>
+                    <tr class="align-middle" th:each="genre : ${genres}"
+                        th:onclick="'javascript:rowClicked(\'' + ${genre.id} + '\');'">
+                        <td><span th:text="${genre.id}"></span></td>
+                        <td><span th:text="${genre.name}"></span></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div th:case="*">
-                <h2>No authors present</h2>
+                <h2>No genres present</h2>
             </div>
-            <div><a href="/authors/add" class="btn btn-success btn-lg btn-block">Add new author</a></div>
         </div>
     </div>
-
 </div>
 </body>
 </html>
