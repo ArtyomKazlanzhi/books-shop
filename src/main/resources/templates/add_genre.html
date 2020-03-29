@@ -18,7 +18,7 @@
 
     <div class="py-5 text-center">
         <h2><a href="/genres" class="badge badge-info">See all genres here</a></h2>
-        <form enctype="multipart/form-data" method="post" th:action="@{/addGenre}"
+        <form enctype="multipart/form-data" method="post" th:action="@{/genres/add}"
               th:object="${genre}" >
             <div class="row">
                 <div class="col-md mb-2">

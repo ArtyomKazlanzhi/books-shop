@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +20,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "orders")
 public class Order {
@@ -39,7 +42,7 @@ public class Order {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST})
     @JoinColumn(name = "book_id")
     private Book book;
 }

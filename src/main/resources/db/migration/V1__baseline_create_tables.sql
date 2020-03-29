@@ -15,19 +15,19 @@ CREATE TABLE `authors` (
 );
 
 CREATE TABLE `books_to_authors` (
-	`book_id` INT NOT NULL,
-	`author_id` INT NOT NULL
+	`book_id` INT,
+	`author_id` INT
 );
 
 CREATE TABLE `genres` (
 	`id` INT NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(255) NOT NULL UNIQUE,
+	`name` VARCHAR(255) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `books_to_genres` (
-	`book_id` INT NOT NULL,
-	`genre_id` INT NOT NULL
+	`book_id` INT,
+	`genre_id` INT
 );
 
 CREATE TABLE `orders` (
@@ -36,7 +36,7 @@ CREATE TABLE `orders` (
 	`last_name` VARCHAR(255) NOT NULL,
 	`address` VARCHAR(255) NOT NULL,
 	`quantity` INT NOT NULL,
-	`book_id` INT NOT NULL,
+	`book_id` INT,
 	PRIMARY KEY (`id`)
 );
 

@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Author;
-import ua.atomspace.kazlanzhy.books.shop.dao.model.Genre;
 import ua.atomspace.kazlanzhy.books.shop.service.AuthorService;
 
 import javax.validation.Valid;
@@ -16,6 +16,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RequestMapping(path = "/authors")
 public class AuthorController {
 
     private AuthorService authorService;
@@ -25,23 +26,23 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @GetMapping("/authors")
-    public String getGenres(Model model) {
+    @GetMapping
+    public String getAuthors(Model model) {
         List<Author> list = authorService.list();
         log.info("GET authors list: {}", list);
         model.addAttribute("authors", list);
         return "authors";
     }
 
-    @GetMapping("/addAuthor")
-    public String addGenres(Model model) {
+    @GetMapping("/add")
+    public String addAuthor(Model model) {
         model.addAttribute("author", new Author());
         return "add_author";
     }
 
-    @PostMapping("/addAuthor")
-    public String addGenre(@Valid Author author, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()){
+    @PostMapping("/add")
+    public String processAuthorAdding(@Valid Author author, BindingResult bindingResult) {
+        if (!bindingResult.hasErrors()) {
             log.info("POST author: {}", author);
             authorService.create(author);
             return "redirect:/authors";
