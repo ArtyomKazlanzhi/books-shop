@@ -34,6 +34,14 @@ public class BookController {
         this.authorService = authorService;
     }
 
+    @GetMapping
+    public String getAllBooks(Model model) {
+        List<Book> books = bookService.list();
+        log.info("GET all books: {}", books);
+        model.addAttribute("books", books);
+        return "books";
+    }
+
     @GetMapping("/add")
     public String addBook(Model model) {
         List<Genre> genres = genreService.list();
@@ -48,6 +56,6 @@ public class BookController {
     public String processBookAdding(@Valid Book book, Model model) {
         log.info("{}", book);
         bookService.create(book);
-        return "redirect:/authors";
+        return "redirect:/books";
     }
 }

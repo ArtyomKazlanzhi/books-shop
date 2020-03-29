@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>All books</title>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="/genres" class="navbar-brand">Books by genre</a>
+    <a href="/authors" class="navbar-brand">Books by author</a>
+</nav>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <div th:switch="${#lists.isEmpty(books)}">
+            <div th:case="${false}" class="table-responsive">
+                <h2>Present books</h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="align-middle" th:each="book : ${books}">
+                        <td><span th:text="${book.title}"></span></td>
+                        <td><span th:text="${book.description}"></span></td>
+                        <td><span th:text="${book.price}"></span></td>
+                        <td><span><a class="btn btn-primary" th:href="@{'/books/edit/' + ${book.id}}" role="button">Edit</a></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:case="*">
+                <h2>No books present</h2>
+            </div>
+            <div><a href="/books/add" class="btn btn-success btn-lg btn-block">Add new book</a></div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

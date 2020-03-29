@@ -8,6 +8,7 @@ import ua.atomspace.kazlanzhy.books.shop.dao.model.Genre;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
+    List<Book> findAllByOrderByIdDesc();
 
     List<Book> findAllByGenres(Genre genre);
 
