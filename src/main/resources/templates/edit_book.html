@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Add new book</title>
+    <title th:text="'Edit ' + ${book.title}"></title>
 </head>
 <body class="bg-light">
 
@@ -19,24 +19,28 @@
     <div class="py-5 text-center">
         <h2><a href="/books" class="btn btn-primary mb-3">Back to all books</a></h2>
         <div class="col-md-12 mb-3 mt-5">
-            <h4 class="px-md-5">Fields to input</h4>
-            <form class="mt-3" enctype="multipart/form-data" method="post" th:action="@{/books/add}"
+            <h4 class="px-md-5">Edit book information</h4>
+            <form class="mt-3" enctype="multipart/form-data" method="post" th:action="@{/books/edit}"
                   th:object="${book}">
+                <input type="hidden" th:field="*{id}" />
                 <div class="d-flex justify-content-center">
                     <div class="col-md-3">
                         <label for="title">Title</label>
-                        <input th:field="*{title}" type="text" class="form-control" id="title" required>
+                        <input th:field="*{title}" th:value="${book.title}" type="text" class="form-control" id="title"
+                               required>
                         <small class="text-danger" th:if="${#fields.hasErrors('Title')}" th:errors="*{title}"></small>
                     </div>
                     <div class="col-md-3">
                         <label for="description">Description</label>
-                        <input th:field="*{description}" type="text" class="form-control" id="description">
+                        <input th:field="*{description}" th:value="${book.description}" type="text" class="form-control"
+                               id="description">
                         <small class="text-danger" th:if="${#fields.hasErrors('description')}"
                                th:errors="*{description}"></small>
                     </div>
                     <div class="col-md-2">
                         <label for="price">Price</label>
-                        <input th:field="*{price}" type="number" class="form-control" id="price" required>
+                        <input th:field="*{price}" th:value="${book.price}" type="number" class="form-control"
+                               id="price" required>
                         <small class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
                     </div>
                     <div class="col-md-2">
@@ -45,6 +49,7 @@
                                 multiple="multiple">
                             <option th:each="genre : ${genres}"
                                     th:value="${{genre}}"
+                                    th:selected="${selectedGenres.contains(genre)}"
                                     th:text="${genre.name}"></option>
                         </select>
                     </div>
@@ -54,11 +59,12 @@
                                 multiple="multiple">
                             <option th:each="author : ${authors}"
                                     th:value="${{author}}"
+                                    th:selected="${selectedGenres.contains(author)}"
                                     th:text="${author.lastName} + ' ' + ${author.firstName} + ' ' + ${author.patronymic}"></option>
                         </select>
                     </div>
                 </div>
-                <button class="btn btn-success btn-block mt-5" type="submit" value="Save">Submit</button>
+                <button class="btn btn-success btn-block mt-5" type="submit" value="Submit">Update</button>
             </form>
         </div>
     </div>

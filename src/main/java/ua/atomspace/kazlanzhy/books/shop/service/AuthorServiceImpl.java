@@ -22,7 +22,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public List<Author> list() {
-        return authorRepository.findAll();
+        return authorRepository.findAllByOrderByIdDesc();
     }
 
     @Override

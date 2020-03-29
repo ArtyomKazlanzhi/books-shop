@@ -41,7 +41,7 @@ public class GenreController {
     }
 
     @PostMapping("/add")
-    public String processGenreAdding(@Valid Genre genre, BindingResult bindingResult) {
+    public String processGenreAdding(Genre genre, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()){
             log.info("POST genre: {}", genre);
             genreService.create(genre);

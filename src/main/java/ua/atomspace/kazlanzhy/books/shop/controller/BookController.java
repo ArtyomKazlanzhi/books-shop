@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Author;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Book;
@@ -15,7 +17,6 @@ import ua.atomspace.kazlanzhy.books.shop.service.BookService;
 import ua.atomspace.kazlanzhy.books.shop.service.GenreService;
 
 import javax.validation.Valid;
-import java.util.LinkedList;
 import java.util.List;
 
 @Slf4j
@@ -47,15 +48,36 @@ public class BookController {
         List<Genre> genres = genreService.list();
         List<Author> authors = authorService.list();
         model.addAttribute("genres", genres);
+        model.addAttribute("genres", genres);
         model.addAttribute("authors", authors);
         model.addAttribute("book", new Book());
         return "add_book";
     }
 
     @PostMapping("/add")
-    public String processBookAdding(@Valid Book book, Model model) {
+    public String processBookAdding(@Valid Book book) {
         log.info("{}", book);
         bookService.create(book);
+        return "redirect:/books";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editBook(@PathVariable Integer id, Model model) {
+        Book book = bookService.get(id);
+        List<Genre> genres = genreService.list();
+        List<Author> authors = authorService.list();
+        model.addAttribute("genres", genres);
+        model.addAttribute("selectedGenres", book.getGenres());
+        model.addAttribute("selectedAuthors", book.getAuthors());
+        model.addAttribute("authors", authors);
+        model.addAttribute("book", book);
+        return "edit_book";
+    }
+
+    @PostMapping("/edit")
+    public String processBookEditing(@Valid Book book) {
+        log.info("{}", book);
+        bookService.update(book, book.getId());
         return "redirect:/books";
     }
 }
