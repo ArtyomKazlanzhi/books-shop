@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 @Table(name = "authors")
 public class Author {
@@ -30,9 +34,11 @@ public class Author {
     private Integer id;
 
     @Column(name = "last_name")
+    @Length(min = 2, max = 50, message = "Last name should be from 2 to 50 characters")
     private String lastName;
 
     @Column(name = "first_name")
+    @Length(min = 2, max = 50, message = "First name should be from 2 to 50 characters")
     private String firstName;
 
     @Column(name = "patronymic")
