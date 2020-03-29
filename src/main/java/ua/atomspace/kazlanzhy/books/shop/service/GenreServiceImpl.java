@@ -50,6 +50,11 @@ public class GenreServiceImpl implements GenreService {
         return genre;
     }
 
+    @Override
+    public boolean isUnique(String name) {
+        return !genreRepository.existsByName(name);
+    }
+
     static ResourceNotFoundException logGenreNotFound(Integer id) {
         log.error("Genre with id = {} NOT_FOUND", id);
         return new ResourceNotFoundException("Genre with id = " + id + " not found");

@@ -17,12 +17,13 @@
 
     <div class="py-5 text-center">
         <h2><a href="/genres" class="badge badge-info">See all genres here</a></h2>
-        <form enctype="multipart/form-data" method="post" th:action="@{/addGenre}" class="need-validation"
+        <form enctype="multipart/form-data" method="post" th:action="@{/addGenre}"
               th:object="${genre}" >
             <div class="row">
                 <div class="col-md mb-2">
                     <label for="name">Write new genre</label>
                     <input th:field="*{name}" type="text" class="form-control" id="name">
+                    <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
                 </div>
             </div>
             <button class="btn btn-primary" type="submit" value="Submit">Add genre</button>

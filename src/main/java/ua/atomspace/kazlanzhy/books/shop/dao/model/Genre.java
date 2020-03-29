@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import ua.atomspace.kazlanzhy.books.shop.service.validation.UniqueName;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +29,8 @@ public class Genre {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     @NotBlank(message = "Shouldn't be empty")
+    @UniqueName
     private String name;
 }
