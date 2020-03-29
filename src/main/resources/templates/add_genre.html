@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Add new genre</title>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="/genres" class="navbar-brand">Books by genre</a>
+</nav>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2><a href="/genres" class="badge badge-info">See all genres here</a></h2>
+        <form enctype="multipart/form-data" method="post" th:action="@{/addGenre}" class="need-validation"
+              th:object="${genre}" >
+            <div class="row">
+                <div class="col-md mb-2">
+                    <label for="name">Write new genre</label>
+                    <input th:field="*{name}" type="text" class="form-control" id="name">
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit" value="Submit">Add genre</button>
+        </form>
+    </div>
+</div>
+
+</div>
+</body>
+</html>

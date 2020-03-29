@@ -22,7 +22,7 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public List<Genre> list() {
-        return genreRepository.findAll();
+        return genreRepository.findAllByOrderByIdDesc();
     }
 
     @Override

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Genres</title>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a href="/genres" class="navbar-brand">Books by genre</a>
+</nav>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <div th:switch="${#lists.isEmpty(genres)}">
+            <div th:case="${false}" class="table-responsive">
+                <h2>Available genres</h2>
+                <h3 class="p-4">Select genre to see the list of his books</h3>
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>№</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="align-middle" th:each="genre : ${genres}">
+                        <td><span th:text="${genre.id}"></span></td>
+                        <td><span th:text="${genre.name}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:case="*">
+                <h2>No genres present</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
