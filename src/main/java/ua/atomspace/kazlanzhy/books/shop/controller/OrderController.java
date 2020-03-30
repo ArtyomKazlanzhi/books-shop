@@ -3,9 +3,9 @@ package ua.atomspace.kazlanzhy.books.shop.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ua.atomspace.kazlanzhy.books.shop.dao.model.Book;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Order;
 import ua.atomspace.kazlanzhy.books.shop.service.OrderService;
 
@@ -22,9 +22,14 @@ public class OrderController {
     }
 
     @PostMapping
-    public String orderBook(Order order){
+    public String orderBook(Order order) {
         log.info("{}", order);
         orderService.create(order);
-        return "redirect:/authors/select";
+        return "redirect:/orders/success";
+    }
+
+    @GetMapping("/success")
+    public String getSuccessPage() {
+        return "success_order";
     }
 }

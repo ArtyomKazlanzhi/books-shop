@@ -1,6 +1,6 @@
 package ua.atomspace.kazlanzhy.books.shop.exception;
 
-public class ResourceNotFoundException extends RuntimeException{
+public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException() {
     }
 
