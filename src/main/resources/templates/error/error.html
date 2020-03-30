@@ -17,6 +17,7 @@
 <div class="container align-items-center">
 
     <div class="py-5 text-center text-danger" th:switch="${status}" style="font-size: 60px; margin:30% 0">
+        <h1 th:case="403">Access denied. Add button to login</h1>
         <h1 th:case="404">Not found 404</h1>
         <h1 th:case="500">Whoops, Internal server error</h1>
         <h1 th:case="*">Whoops, something went wrong :(</h1>

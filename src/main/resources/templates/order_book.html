@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title th:text="'Order ' + ${book.title}"></title>
+    <title>Order book</title>
 </head>
 <body class="bg-light">
 
@@ -78,14 +78,10 @@
                     <div class="col-md-2">
                         <label for="address">Address</label>
                         <input th:field="*{address}" type="text" class="form-control" id="address" required>
-                        <small class="text-danger" th:if="${#fields.hasErrors('address')}"
-                               th:errors="*{address}"></small>
                     </div>
                     <div class="col-md-2">
                         <label for="quantity">Book quantity</label>
-                        <input th:field="*{quantity}" type="number" class="form-control" id="quantity" required>
-                        <small class="text-danger" th:if="${#fields.hasErrors('quantity')}"
-                               th:errors="*{quantity}"></small>
+                        <input th:field="*{quantity}" type="number" class="form-control" id="quantity" required min="1">
                     </div>
                 </div>
                 <button class="btn btn-success btn-block mt-5" type="submit">Order</button>

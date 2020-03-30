@@ -44,12 +44,12 @@ public class AuthorController {
 
     @PostMapping("/add")
     public String processAuthorAdding(@Valid Author author, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
-            Author created = authorService.create(author);
-            log.info("POST author on /authors/add {}", created);
-            return "redirect:/authors";
+        if (bindingResult.hasErrors()) {
+            return "add_author";
         }
-        return "add_author";
+        Author created = authorService.create(author);
+        log.info("POST author on /authors/add {}", created);
+        return "redirect:/authors";
     }
 
     @GetMapping

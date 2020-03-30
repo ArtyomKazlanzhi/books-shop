@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 @NoArgsConstructor
@@ -35,13 +36,16 @@ public class Author {
 
     @Column(name = "last_name")
     @Length(min = 2, max = 50, message = "Last name should be from 2 to 50 characters")
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "Should contain only characters")
     private String lastName;
 
     @Column(name = "first_name")
     @Length(min = 2, max = 50, message = "First name should be from 2 to 50 characters")
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "Should contain only characters")
     private String firstName;
 
     @Column(name = "patronymic")
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "Should contain only characters")
     private String patronymic;
 
     @ToString.Exclude

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,9 +33,13 @@ public class Order {
     private Integer id;
 
     @Column(name = "name")
+    @Length(min = 2, max = 50, message = "Name should be from 2 to 50 characters")
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "Should contain only characters")
     private String name;
 
     @Column(name = "last_name")
+    @Length(min = 2, max = 50, message = "Last name should be from 2 to 50 characters")
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "Should contain only characters")
     private String lastName;
 
     @Column(name = "address")

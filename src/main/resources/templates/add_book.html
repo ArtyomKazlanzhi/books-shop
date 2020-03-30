@@ -25,40 +25,64 @@
                     <div class="col-md-3">
                         <label for="title">Title</label>
                         <input th:field="*{title}" type="text" class="form-control" id="title" required>
-                        <small class="text-danger" th:if="${#fields.hasErrors('Title')}" th:errors="*{title}"></small>
                     </div>
                     <div class="col-md-4">
                         <label for="description">Description</label>
                         <input th:field="*{description}" type="text" class="form-control" id="description">
-                        <small class="text-danger" th:if="${#fields.hasErrors('description')}"
-                               th:errors="*{description}"></small>
                     </div>
                     <div class="col-md-2">
                         <label for="price">Price</label>
-                        <input th:field="*{price}" type="number" class="form-control" id="price" required>
-                        <small class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
+                        <input th:field="*{price}" type="number" class="form-control" id="price" required min="0">
                     </div>
                     <div class="col-md-3">
                         <h5>Genres:</h5>
-                        <select th:field="${book.genres}" class="custom-select custom-select-sm" required
-                                multiple="multiple">
-                            <option th:each="genre : ${genres}"
-                                    th:value="${{genre}}"
-                                    th:text="${genre.name}"></option>
-                        </select>
+                        <div th:switch="${#lists.isEmpty(genres)}">
+                            <select th:case="${false}"
+                                    th:field="${book.genres}" class="custom-select custom-select-sm" required
+                                    multiple="multiple">
+                                <option th:each="genre : ${genres}"
+                                        th:value="${{genre}}"
+                                        th:text="${genre.name}"></option>
+                            </select>
+                            <div th:case="*">
+                                <h6>no genres present
+                                    <a href="/genres/add" class="btn btn-outline-primary my-3 btn-sm">Add new genre</a>
+                                </h6>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <h5>Authors:</h5>
-                        <select th:field="${book.authors}" class="custom-select custom-select-sm" required
-                                multiple="multiple">
-                            <option th:each="author : ${authors}"
-                                    th:value="${{author}}"
-                                    th:text="${author.lastName} + ' ' + ${author.firstName} + ' ' +
+                        <div th:switch="${#lists.isEmpty(authors)}">
+                            <select th:case="${false}"
+                                    th:field="${book.authors}" class="custom-select custom-select-sm" required
+                                    multiple="multiple">
+                                <option th:each="author : ${authors}"
+                                        th:value="${{author}}"
+                                        th:text="${author.lastName} + ' ' + ${author.firstName} + ' ' +
                                     (${author.patronymic != null} ? ${author.patronymic} : '')"></option>
-                        </select>
+                            </select>
+                            <div th:case="*">
+                                <h6>no authors present
+                                    <a href="/authors/add" class="btn btn-outline-primary my-3 btn-sm">Add new
+                                        author</a>
+                                </h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <button class="btn btn-success btn-block btn-lg mt-5" type="submit">Save</button>
+                <div th:switch="${#lists.isEmpty(authors)} OR ${#lists.isEmpty(genres)}">
+                    <button th:case="${false}"
+                            class="btn btn-success btn-block btn-lg mt-5"
+                            type="submit">
+                        Save
+                    </button>
+                    <button th:case="*" disabled
+                            class="btn btn-warn btn-block btn-lg mt-5"
+                            type="submit">
+                        First add new genre/author
+                    </button>
+                </div>
             </form>
         </div>
     </div>
