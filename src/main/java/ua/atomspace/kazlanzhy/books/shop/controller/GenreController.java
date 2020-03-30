@@ -45,7 +45,7 @@ public class GenreController {
         if (!bindingResult.hasErrors()) {
             log.info("POST genre: {}", genre);
             genreService.create(genre);
-            return "redirect:/genres/select";
+            return "redirect:/genres";
         }
         return "add_genre";
     }

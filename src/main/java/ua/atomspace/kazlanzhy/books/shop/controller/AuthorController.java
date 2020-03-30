@@ -46,7 +46,7 @@ public class AuthorController {
         if (!bindingResult.hasErrors()) {
             log.info("POST author: {}", author);
             authorService.create(author);
-            return "redirect:/authors/select";
+            return "redirect:/authors";
         }
         return "add_author";
     }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Author;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Book;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Genre;
+import ua.atomspace.kazlanzhy.books.shop.dao.model.Order;
 import ua.atomspace.kazlanzhy.books.shop.service.AuthorService;
 import ua.atomspace.kazlanzhy.books.shop.service.BookService;
 import ua.atomspace.kazlanzhy.books.shop.service.GenreService;
@@ -92,5 +93,15 @@ public class BookController {
         List<Book> booksByGenre = bookService.getBooksByGenre(genreId);
         model.addAttribute("books", booksByGenre);
         return "book_list";
+    }
+
+    @GetMapping("/{bookId}")
+    public String getBook(@PathVariable Integer bookId, Model model) {
+        Book book = bookService.get(bookId);
+        Order order = new Order();
+        order.setBook(book);
+        model.addAttribute("order", order);
+        model.addAttribute("book", book);
+        return "order_book";
     }
 }
