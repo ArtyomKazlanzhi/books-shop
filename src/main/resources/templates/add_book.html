@@ -27,7 +27,7 @@
                         <input th:field="*{title}" type="text" class="form-control" id="title" required>
                         <small class="text-danger" th:if="${#fields.hasErrors('Title')}" th:errors="*{title}"></small>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <label for="description">Description</label>
                         <input th:field="*{description}" type="text" class="form-control" id="description">
                         <small class="text-danger" th:if="${#fields.hasErrors('description')}"
@@ -38,7 +38,7 @@
                         <input th:field="*{price}" type="number" class="form-control" id="price" required>
                         <small class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <h5>Genres:</h5>
                         <select th:field="${book.genres}" class="custom-select custom-select-sm" required
                                 multiple="multiple">
@@ -47,7 +47,7 @@
                                     th:text="${genre.name}"></option>
                         </select>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <h5>Authors:</h5>
                         <select th:field="${book.authors}" class="custom-select custom-select-sm" required
                                 multiple="multiple">
@@ -58,7 +58,7 @@
                         </select>
                     </div>
                 </div>
-                <button class="btn btn-success btn-block mt-5" type="submit">Save</button>
+                <button class="btn btn-success btn-block btn-lg mt-5" type="submit">Save</button>
             </form>
         </div>
     </div>

@@ -44,8 +44,8 @@ public class GenreController {
     @PostMapping("/add")
     public String processGenreAdding(Genre genre, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            log.info("POST genre on genres/add: {}", genre);
-            genreService.create(genre);
+            Genre created = genreService.create(genre);
+            log.info("POST genre on genres/add: {}", created);
             return "redirect:/genres";
         }
         return "add_genre";
