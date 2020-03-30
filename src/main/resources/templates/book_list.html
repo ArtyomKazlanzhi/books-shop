@@ -34,7 +34,8 @@
                         <td><span th:text="${book.title}"></span></td>
                         <td><span th:text="${book.description}"></span></td>
                         <td><span th:text="${book.price}"></span></td>
-                        <td><span><a class="btn btn-primary" th:href="@{'/books/' + ${book.id}}" role="button">Order now</a></span></td>
+                        <td><span><a class="btn btn-primary" th:href="@{'/books/' + ${book.id}}"
+                                     role="button">Order now</a></span></td>
                     </tr>
                     </tbody>
                 </table>

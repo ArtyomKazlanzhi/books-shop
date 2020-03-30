@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>All authors</title>
+    <title>All books</title>
 </head>
 <body class="bg-light">
 
@@ -15,33 +15,35 @@
 </nav>
 
 <div class="container">
+
     <div class="py-5 text-center mt-5">
-        <div th:switch="${#lists.isEmpty(authors)}">
+        <div th:switch="${#lists.isEmpty(books)}">
             <div th:case="${false}" class="table-responsive">
-                <h2>Present authors</h2>
+                <h2>Present books</h2>
                 <table class="table">
                     <thead class="thead-dark">
                     <tr>
-                        <th>Last name</th>
-                        <th>First name</th>
-                        <th>Patronymic</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Price</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="align-middle" th:each="author : ${authors}">
-                        <td><span th:text="${author.lastName}"></span></td>
-                        <td><span th:text="${author.firstName}"></span></td>
-                        <td><span th:text="${author.patronymic}"></span></td>
-                        <td><span><a class="btn btn-primary" th:href="@{'/authors/edit/' + ${author.id}}" role="button">Edit</a></span></td>
+                    <tr class="align-middle" th:each="book : ${books}">
+                        <td><span th:text="${book.title}"></span></td>
+                        <td><span th:text="${book.description}"></span></td>
+                        <td><span th:text="${book.price}"></span></td>
+                        <td><span><a class="btn btn-primary" th:href="@{'/books/edit/' + ${book.id}}"
+                                     role="button">Edit</a></span></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div th:case="*">
-                <h2>No authors present</h2>
+                <h2>No books present</h2>
             </div>
-            <div><a href="/authors/add" class="btn btn-success btn-lg btn-block mt-5">Add new author</a></div>
+            <div><a href="/books/add" class="btn btn-success btn-lg btn-block mt-5">Add new book</a></div>
         </div>
     </div>
 

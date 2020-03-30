@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +40,7 @@ public class BookController {
         List<Book> books = bookService.list();
         log.info("GET book list on /books/{}", books);
         model.addAttribute("books", books);
-        return "books";
+        return "admin/books";
     }
 
     @GetMapping("/add")
@@ -53,7 +52,7 @@ public class BookController {
         model.addAttribute("authors", authors);
         model.addAttribute("book", new Book());
         log.info("GET new Book on /books/add");
-        return "add_book";
+        return "admin/add_book";
     }
 
     @PostMapping("/add")
@@ -72,11 +71,11 @@ public class BookController {
         model.addAttribute("authors", authorService.list());
         model.addAttribute("book", book);
         log.info("GET book on /authors/edit{}: {}", id, book);
-        return "edit_book";
+        return "admin/edit_book";
     }
 
     @PostMapping("/edit")
-    public String processBookEditing(@Valid Book book, BindingResult bindingResult) {
+    public String processBookEditing(@Valid Book book) {
         Book updated = bookService.update(book, book.getId());
         log.info("UPDATED book on /books/edit {}", updated);
         return "redirect:/books";

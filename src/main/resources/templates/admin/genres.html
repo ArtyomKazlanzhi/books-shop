@@ -32,7 +32,8 @@
                     <tr class="align-middle" th:each="genre : ${genres}">
                         <td><span th:text="${genre.id}"></span></td>
                         <td><span th:text="${genre.name}"></span></td>
-                        <td><span><a class="btn btn-primary" th:href="@{'/genres/edit/' + ${genre.id}}" role="button">Edit</a></span></td>
+                        <td><span><a class="btn btn-primary" th:href="@{'/genres/edit/' + ${genre.id}}" role="button">Edit</a></span>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

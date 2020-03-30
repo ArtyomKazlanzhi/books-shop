@@ -24,11 +24,11 @@
                 <div class="d-flex justify-content-center">
                     <div class="col-md-3">
                         <label for="title">Title</label>
-                        <input th:field="*{title}" type="text" class="form-control" id="title" required>
+                        <input th:field="*{title}" type="text" class="form-control" id="title" required maxlength="255">
                     </div>
-                    <div class="col-md-4">
-                        <label for="description">Description</label>
-                        <input th:field="*{description}" type="text" class="form-control" id="description">
+                    <div class="col-md-4">Description
+                        <textarea th:field="*{description}" th:value="${book.description}" class="form-control"
+                                  aria-label="With textarea" maxlength="255"></textarea>
                     </div>
                     <div class="col-md-2">
                         <label for="price">Price</label>

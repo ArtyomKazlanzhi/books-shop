@@ -27,15 +27,12 @@
                     <div class="col-md-3">
                         <label for="title">Title</label>
                         <input th:field="*{title}" th:value="${book.title}" type="text" class="form-control" id="title"
-                               required>
+                               required maxlength="255">
                         <small class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></small>
                     </div>
-                    <div class="col-md-4">
-                        <label for="description">Description</label>
-                        <input th:field="*{description}" th:value="${book.description}" type="text" class="form-control"
-                               id="description">
-                        <small class="text-danger" th:if="${#fields.hasErrors('description')}"
-                               th:errors="*{description}"></small>
+                    <div class="col-md-4">Description
+                        <textarea th:field="*{description}" th:value="${book.description}" class="form-control"
+                                  aria-label="With textarea" maxlength="255"></textarea>
                     </div>
                     <div class="col-md-2">
                         <label for="price">Price</label>

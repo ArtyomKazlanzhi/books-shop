@@ -38,7 +38,7 @@ public class GenreController {
     public String addGenre(Model model) {
         model.addAttribute("genre", new Genre());
         log.info("GET new Genre on /genres/add");
-        return "add_genre";
+        return "admin/add_genre";
     }
 
     @PostMapping("/add")
@@ -48,7 +48,7 @@ public class GenreController {
             log.info("POST genre on genres/add: {}", created);
             return "redirect:/genres";
         }
-        return "add_genre";
+        return "admin/add_genre";
     }
 
     @GetMapping
@@ -56,7 +56,7 @@ public class GenreController {
         List<Genre> genres = genreService.list();
         model.addAttribute("genres", genres);
         log.info("GET genre list on /genres/select: {}", genres);
-        return "genres";
+        return "admin/genres";
     }
 
     @GetMapping("/edit/{id}")
@@ -64,7 +64,7 @@ public class GenreController {
         Genre genre = genreService.get(id);
         model.addAttribute("genre", genre);
         log.info("GET genre on genres/edit{}: {}", id, genre);
-        return "edit_genre";
+        return "admin/edit_genre";
     }
 
     @PostMapping("/edit")

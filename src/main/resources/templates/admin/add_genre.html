@@ -18,11 +18,11 @@
     <div class="py-5 text-center mt-5">
         <h2><a href="/genres" class="badge badge-info">Back to all genres</a></h2>
         <form enctype="multipart/form-data" method="post" th:action="@{/genres/add}"
-              th:object="${genre}" >
+              th:object="${genre}">
             <div class="row">
                 <div class="col-md mb-2">
                     <label for="name">Write new genre</label>
-                    <input th:field="*{name}" type="text" class="form-control" id="name">
+                    <input th:field="*{name}" type="text" class="form-control" id="name" maxlength="255">
                     <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
                 </div>
             </div>

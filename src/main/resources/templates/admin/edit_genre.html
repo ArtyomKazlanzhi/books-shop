@@ -27,7 +27,7 @@
                     <div class="col-md-3">
                         <label for="name">Name</label>
                         <input th:field="*{name}" th:value="${genre.name}" type="text" class="form-control" id="name"
-                               required>
+                               required maxlength="255">
                         <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
                     </div>
                 </div>

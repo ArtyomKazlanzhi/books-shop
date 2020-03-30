@@ -1,31 +1,19 @@
 package ua.atomspace.kazlanzhy.books.shop.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.web.servlet.error.ErrorController;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
-
-@Slf4j
 @Controller
-public class MainController implements ErrorController {
+public class MainController {
 
-    private static final String PATH = "/error";
-
-    @RequestMapping("/error")
-    public String handleError(HttpServletRequest request, Model model) {
-        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-        model.addAttribute("status", status);
-        log.error("{} on {} from user {}", status, request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI),
-                request.getUserPrincipal());
-        return "/error/error";
+    @GetMapping(value = {"/", "/home"})
+    public String getHomePage() {
+        return "redirect:/genres/select";
     }
 
-    @Override
-    public String getErrorPath() {
-        return PATH;
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
     }
 }

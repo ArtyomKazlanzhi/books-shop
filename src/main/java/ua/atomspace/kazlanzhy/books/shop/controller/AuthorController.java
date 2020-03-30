@@ -39,13 +39,13 @@ public class AuthorController {
     public String addAuthor(Model model) {
         log.info("GET new Author on /authors/add");
         model.addAttribute("author", new Author());
-        return "add_author";
+        return "admin/add_author";
     }
 
     @PostMapping("/add")
     public String processAuthorAdding(@Valid Author author, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "add_author";
+            return "admin/add_author";
         }
         Author created = authorService.create(author);
         log.info("POST author on /authors/add {}", created);
@@ -57,7 +57,7 @@ public class AuthorController {
         List<Author> authors = authorService.list();
         log.info("GET all authors on /authors: {}", authors);
         model.addAttribute("authors", authors);
-        return "authors";
+        return "admin/authors";
     }
 
     @GetMapping("/edit/{id}")
@@ -65,7 +65,7 @@ public class AuthorController {
         Author author = authorService.get(id);
         log.info("GET author on /authors/edit{}: {}", id, author);
         model.addAttribute("author", author);
-        return "edit_author";
+        return "admin/edit_author";
     }
 
     @PostMapping("/edit")
