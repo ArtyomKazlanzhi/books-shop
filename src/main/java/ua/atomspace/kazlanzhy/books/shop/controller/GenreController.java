@@ -29,21 +29,22 @@ public class GenreController {
     @GetMapping("/select")
     public String getGenresForSelect(Model model) {
         List<Genre> list = genreService.list();
-        log.info("GET genres list: {}", list);
         model.addAttribute("genres", list);
+        log.info("GET genres list on /genres/select: {}", list);
         return "select_genre";
     }
 
     @GetMapping("/add")
     public String addGenre(Model model) {
         model.addAttribute("genre", new Genre());
+        log.info("GET new Genre on /genres/add");
         return "add_genre";
     }
 
     @PostMapping("/add")
     public String processGenreAdding(Genre genre, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            log.info("POST genre: {}", genre);
+            log.info("POST genre on genres/add: {}", genre);
             genreService.create(genre);
             return "redirect:/genres";
         }
@@ -54,6 +55,7 @@ public class GenreController {
     public String getAllGenres(Model model) {
         List<Genre> genres = genreService.list();
         model.addAttribute("genres", genres);
+        log.info("GET genre list on /genres/select: {}", genres);
         return "genres";
     }
 
@@ -61,13 +63,14 @@ public class GenreController {
     public String editGenre(@PathVariable Integer id, Model model) {
         Genre genre = genreService.get(id);
         model.addAttribute("genre", genre);
+        log.info("GET genre on genres/edit{}: {}", id, genre);
         return "edit_genre";
     }
 
     @PostMapping("/edit")
     public String processBookEditing(Genre genre) {
-        log.info("{}", genre);
-        genreService.update(genre, genre.getId());
+        Genre updated = genreService.update(genre, genre.getId());
+        log.info("UPDATED genre on genres/edit: {}", updated);
         return "redirect:/genres";
     }
 }

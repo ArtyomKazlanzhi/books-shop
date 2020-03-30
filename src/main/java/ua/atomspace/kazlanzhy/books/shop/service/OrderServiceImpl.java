@@ -42,7 +42,6 @@ public class OrderServiceImpl implements OrderService {
         order.setAddress(request.getAddress());
         order.setQuantity(request.getQuantity());
         order.setBook(request.getBook());
-
         return orderRepository.save(order);
     }
 

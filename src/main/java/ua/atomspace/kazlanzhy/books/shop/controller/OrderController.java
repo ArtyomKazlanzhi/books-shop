@@ -23,13 +23,14 @@ public class OrderController {
 
     @PostMapping
     public String orderBook(Order order) {
-        log.info("{}", order);
-        orderService.create(order);
+        Order created = orderService.create(order);
+        log.info("POST order on /order : {}", created);
         return "redirect:/orders/success";
     }
 
     @GetMapping("/success")
     public String getSuccessPage() {
+        log.info("GET on /orders/success");
         return "success_order";
     }
 }

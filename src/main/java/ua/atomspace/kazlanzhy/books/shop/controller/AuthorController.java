@@ -30,13 +30,14 @@ public class AuthorController {
     @GetMapping("/select")
     public String getAuthorsForSelect(Model model) {
         List<Author> list = authorService.list();
-        log.info("GET authors list: {}", list);
+        log.info("GET authors list on /authors/select: {}", list);
         model.addAttribute("authors", list);
         return "select_author";
     }
 
     @GetMapping("/add")
     public String addAuthor(Model model) {
+        log.info("GET new Author on /authors/add");
         model.addAttribute("author", new Author());
         return "add_author";
     }
@@ -44,8 +45,8 @@ public class AuthorController {
     @PostMapping("/add")
     public String processAuthorAdding(@Valid Author author, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
-            log.info("POST author: {}", author);
-            authorService.create(author);
+            Author created = authorService.create(author);
+            log.info("POST author on /authors/add {}", created);
             return "redirect:/authors";
         }
         return "add_author";
@@ -54,7 +55,7 @@ public class AuthorController {
     @GetMapping
     public String getAllAuthors(Model model) {
         List<Author> authors = authorService.list();
-        log.info("GET all authors: {}", authors);
+        log.info("GET all authors on /authors: {}", authors);
         model.addAttribute("authors", authors);
         return "authors";
     }
@@ -62,14 +63,15 @@ public class AuthorController {
     @GetMapping("/edit/{id}")
     public String editAuthor(@PathVariable Integer id, Model model) {
         Author author = authorService.get(id);
+        log.info("GET author on /authors/edit{}: {}", id, author);
         model.addAttribute("author", author);
         return "edit_author";
     }
 
     @PostMapping("/edit")
     public String processAuthorEditing(Author author) {
-        log.info("{}", author);
-        authorService.update(author, author.getId());
+        Author updated = authorService.update(author, author.getId());
+        log.info("UPDATED author on /authors/edit {}", updated);
         return "redirect:/authors";
     }
 }
