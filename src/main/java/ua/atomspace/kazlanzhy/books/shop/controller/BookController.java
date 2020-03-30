@@ -79,4 +79,18 @@ public class BookController {
         bookService.update(book, book.getId());
         return "redirect:/books";
     }
+
+    @GetMapping("/author/{authorId}")
+    public String getAuthorBooks(@PathVariable Integer authorId, Model model) {
+        List<Book> booksByAuthor = bookService.getBooksByAuthor(authorId);
+        model.addAttribute("books", booksByAuthor);
+        return "book_list";
+    }
+
+    @GetMapping("/genre/{genreId}")
+    public String getGenreBooks(@PathVariable Integer genreId, Model model) {
+        List<Book> booksByGenre = bookService.getBooksByGenre(genreId);
+        model.addAttribute("books", booksByGenre);
+        return "book_list";
+    }
 }
