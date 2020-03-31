@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ua.atomspace.kazlanzhy.books.shop.dao.model.Genre;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Order;
 import ua.atomspace.kazlanzhy.books.shop.service.OrderService;
 
