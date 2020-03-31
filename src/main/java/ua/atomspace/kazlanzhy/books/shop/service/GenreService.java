@@ -15,6 +15,4 @@ public interface GenreService {
     Genre update(Genre genre, Integer id);
 
     Genre delete(Integer id);
-
-    boolean isUnique(String name);
 }
