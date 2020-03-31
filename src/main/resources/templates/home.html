@@ -5,20 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Success</title>
+    <title>Home</title>
 </head>
-<body class="bg-light">
-
+</head>
+<body>
 <div>
     <div sec:authorize="isAuthenticated()" th:replace="fragments/navbar.html :: div.authorized-nav"></div>
     <div sec:authorize="!isAuthenticated()" th:replace="fragments/navbar.html :: div.unauthorized-nav"></div>
 </div>
 
-<div class="container align-items-center">
-
-    <div class="py-5 text-center">
-        <h1 style="font-size: 60px; margin:30% 0" class="text-success">Your order was created successfully.</h1>
+<div class="container">
+    <div class="mt-5">
+        <h1 style="">Books shop</h1>
+        <p>
+            Welcome to the Provectus Test task application!
+            You can check user functionality by navigation bar on top
+            <br>
+            or login to get Admin navigation bar
+        </p>
+        <p>
+            <a href="/login" class="btn btn-large btn-success">Login</a>
+        </p>
     </div>
+
 </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,12 +8,10 @@
     <title>Books</title>
 </head>
 <body class="bg-light">
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <a href="/genres/select" class="navbar-brand">Books by genre</a>
-    <a href="/authors/select" class="navbar-brand">Books by author</a>
-</nav>
-
+<div>
+    <div sec:authorize="isAuthenticated()" th:replace="fragments/navbar.html :: div.authorized-nav"></div>
+    <div sec:authorize="!isAuthenticated()" th:replace="fragments/navbar.html :: div.unauthorized-nav"></div>
+</div>
 <div class="container">
 
     <div class="py-5 text-center mt-5">

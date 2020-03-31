@@ -9,7 +9,7 @@ public class MainController {
 
     @GetMapping(value = {"/", "/home"})
     public String getHomePage() {
-        return "redirect:/genres/select";
+        return "home";
     }
 
     @GetMapping("/login")
