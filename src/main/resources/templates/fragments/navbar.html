@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Navbar</title>
@@ -57,7 +57,7 @@
                     <a class="dropdown-item" href="#">Orders</a>
                 </div>
             </div>
-            <a href="/login?logout" class="btn btn-danger">Logout</a>
+            <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
         </div>
     </nav>
 </div>

@@ -25,8 +25,7 @@
     <div sec:authorize="!isAuthenticated()" th:replace="fragments/navbar.html :: div.unauthorized-nav"></div>
 </div>
 <div class="container">
-
-    <div class="py-5 text-center mt-5">
+    <div class="py-1 text-center mt-3">
         <div th:switch="${#lists.isEmpty(authors)}">
             <div th:case="${false}" class="table-responsive">
                 <h2>Present authors</h2>

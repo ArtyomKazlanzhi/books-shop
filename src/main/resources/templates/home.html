@@ -23,7 +23,7 @@
             <br>
             or login to get Admin navigation bar
         </p>
-        <p>
+        <p sec:authorize="!isAuthenticated()">
             <a href="/login" class="btn btn-large btn-success">Login</a>
         </p>
     </div>
