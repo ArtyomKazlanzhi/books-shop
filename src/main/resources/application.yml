@@ -6,8 +6,8 @@ spring:
       ddl-auto: none
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: 'jdbc:mysql://shop-dev:root@localhost:3306/shop_db'
+    url: 'jdbc:mysql://shop-dev:root@localhost:3306/shop_db?useUnicode=true&serverTimezone=UTC'
   flyway:
     baseline-on-migrate: true
     enabled: true
-    url: 'jdbc:mysql://shop-dev:root@localhost:3306/shop_db'
+    url: 'jdbc:mysql://shop-dev:root@localhost:3306/shop_db?useUnicode=true&serverTimezone=UTC'

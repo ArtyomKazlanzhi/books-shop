@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script>
+        function rowClicked(value) {
+            location.href = "/books/" + value;
+        }
+    </script>
+    <style>
+        .book:hover {
+            background: #ccc;
+            cursor: pointer;
+        }
+    </style>
+    <title>Orders</title>
+</head>
+<body class="bg-light">
+
+<div>
+    <div sec:authorize="isAuthenticated()" th:replace="fragments/navbar.html :: div.authorized-nav"></div>
+    <div sec:authorize="!isAuthenticated()" th:replace="fragments/navbar.html :: div.unauthorized-nav"></div>
+</div>
+
+<div class="container">
+    <div class="text-center">
+        <div class="col-md-12 mb-3">
+            <h3 class="mt-5 text-info mb-4">I know this page wasn't at the requirements,
+                but I thought it would be nice if you can check was order really added to the system or not</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>№</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Address</th>
+                    <th>Quantity</th>
+                    <th>Book</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="align-middle" th:each="order : ${orders}">
+                    <td><span th:text="${order.id}"></span></td>
+                    <td><span th:text="${order.name}"></span></td>
+                    <td><span th:text="${order.lastName}"></span></td>
+                    <td><span th:text="${order.address}"></span></td>
+                    <td><span th:text="${order.quantity}"></span></td>
+                    <td class="book"><span th:onclick="'javascript:rowClicked(\'' + ${order.book.id} + '\');'"
+                              th:text="${order.book.title}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

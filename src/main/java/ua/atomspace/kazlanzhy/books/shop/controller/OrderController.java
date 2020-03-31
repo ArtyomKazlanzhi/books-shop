@@ -8,10 +8,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ua.atomspace.kazlanzhy.books.shop.dao.model.Genre;
 import ua.atomspace.kazlanzhy.books.shop.dao.model.Order;
 import ua.atomspace.kazlanzhy.books.shop.service.OrderService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -34,6 +36,14 @@ public class OrderController {
         Order created = orderService.create(order);
         log.info("POST order on /order : {}", created);
         return "redirect:/orders/success";
+    }
+
+    @GetMapping
+    public String getAllOrders(Model model) {
+        List<Order> orders = orderService.list();
+        model.addAttribute("orders", orders);
+        log.info("GET orders list on /orders: {}", orders);
+        return "admin/orders";
     }
 
     @GetMapping("/success")
