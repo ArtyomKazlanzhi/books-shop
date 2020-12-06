@@ -12,7 +12,7 @@
     <artifactId>books-shop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>books-shop</name>
-    <description>Test Task for Provectus Internship</description>
+    <description>Test Task for Web course-work</description>
 
     <properties>
         <java.version>11</java.version>

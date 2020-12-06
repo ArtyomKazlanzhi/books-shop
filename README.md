@@ -1,6 +1,6 @@
 # Books shop 
 ## About
-This project is a Provectus Test Task application for Internship 2020
+This project is a Web coursework application
 
 ## Customer requirements:
    You need to create web-interface for admin for add/edit title, description of the book, price, author and genre.
