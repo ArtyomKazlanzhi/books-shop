@@ -1,1 +1,1 @@
-dbUrl: 'jdbc:mysql://shopdev:shoppass@db4free.net:3306/shopdbcourse?useUnicode=true&serverTimezone=UTC'
+dbUrl: 'jdbc:mysql://shop-dev:root@localhost:3307/shop_db?useUnicode=true&serverTimezone=UTC'
